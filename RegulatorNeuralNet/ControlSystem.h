@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "MatrixXd.h"
 #include <math.h>
+#include <vector>
 
 #define PI 3.1415
 
@@ -57,7 +58,8 @@ class ControlSystem
 	double g = -10;
 	double d = 1;
 
-	
+	//std::vector<sf::Vector2f> path;
+
 	MatrixXd K;
 
 public:

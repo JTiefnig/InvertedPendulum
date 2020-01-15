@@ -4,6 +4,7 @@
 #include <iostream>
 
 
+
 ControlSystem::ControlSystem()
 	:K(4,1)
 {
@@ -36,7 +37,7 @@ SystemState ControlSystem::function(const SystemState & state)
 	K = K * 1000.0;*/
 
 
-	
+
 
 
 
@@ -53,6 +54,8 @@ SystemState ControlSystem::function(const SystemState & state)
 	if (u < -maxu)
 		u = -maxu;
 
+
+	
 
 
 	double x = state.getVal(0, 0);
@@ -97,6 +100,8 @@ void ControlSystem::timestep(double dt)
 
 	x = x + dt / 6 * (k1 + k2 * 2 + 2.0 * k3 + k4);
 
+	if (abs(x(2, 0)-xR(2,0)) > PI / 2)
+		x = SystemState(0,0,PI,0);
 }
 
 
@@ -163,6 +168,9 @@ void ControlSystem::render(sf::RenderTarget & target)
 	};
 
 	target.draw(line, 2, sf::Lines);
+
+
+
 
 
 }
