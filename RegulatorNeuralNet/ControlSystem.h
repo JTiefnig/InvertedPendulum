@@ -58,6 +58,9 @@ class ControlSystem
 	double g = -10;
 	double d = 1;
 
+
+	double u;
+
 	//std::vector<sf::Vector2f> path;
 
 	MatrixXd K;
@@ -65,11 +68,13 @@ class ControlSystem
 public:
 
 	SystemState xR;
+	SystemState x; // 
+
 
 	ControlSystem();
 	~ControlSystem();
 
-	SystemState x; // 
+	
 
 	// Nonlinear differential equationion 
 	SystemState function(const SystemState& state);
@@ -79,6 +84,10 @@ public:
 
 	void render(sf::RenderTarget& target);
 
+	void setInput(double U)
+	{
+		this->u = U;
+	}
 
 	void setRuhelage(SystemState XR);
 	void setStateParameter(MatrixXd k);

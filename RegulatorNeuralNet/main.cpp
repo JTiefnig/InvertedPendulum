@@ -4,6 +4,7 @@
 #include <vector>
 #include <math.h>
 #include "ControlSystem.h"
+#include "Pouplation.h"
 
 #include "Matrix.h"
 
@@ -37,22 +38,26 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(1200, 600), "Inverted Pendulum");
 
-	ControlSystem sys;
-
-	sys.setRuhelage(SystemState(0, 0, PI, 0));
-
-
+	
+	
+	
+	Pouplation pop(40);
 
 	// for L = 10
-	MatrixXd K(4, 1);
+	/*MatrixXd K(4, 1);
 	K(0, 0) = -0.1;
-	K(1, 0) = -0.3197;
+	K(1, 0) = -0.3197; 
 	K(2, 0) = 4.6382;
 	K(3, 0) = 4.7244;
 
 	K = K * 1000.0;
+*/
+	
 
-	sys.setStateParameter(K);
+	bool done = false;
+	bool autotrain = true;
+
+	int counter = 0;
 
 
 	while (window.isOpen())
@@ -69,43 +74,53 @@ int main()
 				int mx = event.mouseButton.x;
 				int windWidth = window.getSize().x / 2;
 				double  sollpos = (mx - windWidth) / 20.0;
-				std::cout << "target" << sollpos << std::endl;
-
-				std::cout << "ist " << sys.xR(0,0) << std::endl;
-				sys.setRuhelage(SystemState(sollpos, 0, PI, 0));
-				sys.setStateParameter(K);
+				
 			
 			}
 
 			if (event.type == sf::Event::KeyPressed)
 			{
-				if (event.key.code == sf::Keyboard::Left)
+				if (event.key.code == sf::Keyboard::Space)
 				{
-					sys.setRuhelage(SystemState(0, -3, PI, 0));
-					auto mk = K;
-					mk(0, 0) = 0;
-					sys.setStateParameter(mk);
-				}
+					if (!done)
+					{
+						pop.Breed();
+						done = true;
+					}
 					
+				}
+				if (event.key.code == sf::Keyboard::Down)
+				{
+					autotrain != autotrain;
+				}
 
-				if (event.key.code == sf::Keyboard::Right)
-				{
-					sys.setRuhelage(SystemState(0, 3, PI, 0));
-					auto mk = K;
-					mk(0, 0) = 0;
-					sys.setStateParameter(mk);
-				}
-					
+				
+			}
+
+			else
+			{
+				done = false;
 			}
 			
 			if (event.type == sf::Event::KeyReleased)
 			{
-				sys.setRuhelage(SystemState(0, 0, PI, 0));
+				
 				
 			}
 
 
 				
+		}
+
+		if (autotrain)
+		{
+			if (20 < counter)
+			{
+				pop.Breed();
+				counter = 0;
+			}
+				
+			counter++;
 		}
 
 
@@ -115,12 +130,11 @@ int main()
 		window.clear(sf::Color::White);
 
 
-		for(int i =10; i>0; i--)
-			sys.timestep(0.02);
+		pop.timestep();
 
 		drawEnvironment(window);
 
-		sys.render(window);
+		pop.Render(window);
 
 		window.display();
 

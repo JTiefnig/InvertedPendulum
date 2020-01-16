@@ -274,19 +274,19 @@ Matrix<T> Matrix<T>::operator*=(const T & s)
 }
 
 template<class T>
-inline Matrix<T> Matrix<T>::operator+=(const Matrix<T>&)
+inline Matrix<T> Matrix<T>::operator+=(const Matrix<T>& m)
 {
 	return *this = *this + m;
 }
 
 template<class T>
-inline Matrix<T> Matrix<T>::operator-=(const Matrix<T>&)
+inline Matrix<T> Matrix<T>::operator-=(const Matrix<T>& m)
 {
 	return *this = *this - m;
 }
 
 template<class T>
-inline Matrix<T> Matrix<T>::operator*=(const Matrix<T>&)
+inline Matrix<T> Matrix<T>::operator*=(const Matrix<T>& m)
 {
 	return *this = *this * m;
 }

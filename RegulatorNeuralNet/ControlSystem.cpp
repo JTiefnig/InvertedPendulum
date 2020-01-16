@@ -37,15 +37,21 @@ SystemState ControlSystem::function(const SystemState & state)
 	K = K * 1000.0;*/
 
 
+	/*MatrixXd K(4, 1);
+	K(0, 0) = -0.1;
+	K(1, 0) = -0.3197;
+	K(2, 0) = 4.6382;
+	K(3, 0) = 4.7244;
+
+	K = K * 1000.0;
+*/
 
 
-
-
-	auto kk = K.transpose()*(state-xR);
+	//auto kk = K.transpose()*(state-xR);
 	
 	//std::cout << kk << std::endl;
 
-	double u =  -kk(0,0); // 
+	 //u =  -kk(0,0); 
 
 	double maxu = 100;
 
@@ -74,9 +80,6 @@ SystemState ControlSystem::function(const SystemState & state)
 	ret(2, 0) = dphi;
 	//ret(3, 0) = (1 / D)*((m + M)*m*g*L*Sy - m * L*Cy*(m*L*pow(dphi, 2) * Sy - d * dx)) - m * L*Cy*(1 / D)*u; //+ .01*randn;
 
-
-
-
 	// my solution :
 
 	double Z = m * L - m * Cy*Cy *m *L /(M+m);
@@ -98,10 +101,8 @@ void ControlSystem::timestep(double dt)
 	SystemState k3 = function(x + (dt / 2.0 * k2));
 	SystemState k4 = function(x + dt * k3);
 
-	x = x + dt / 6 * (k1 + k2 * 2 + 2.0 * k3 + k4);
+	x = x + dt / 6 * (k1 + k2 * 2.0 + 2.0 * k3 + k4);
 
-	if (abs(x(2, 0)-xR(2,0)) > PI / 2)
-		x = SystemState(0,0,PI,0);
 }
 
 
