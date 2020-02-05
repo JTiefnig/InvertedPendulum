@@ -15,6 +15,7 @@ class Individual
 
 public:
 	Individual();
+	Individual(const NeuralNet& Net);
 	~Individual();
 
 	void timestep(double dt);
@@ -27,6 +28,8 @@ public:
 		return success;
 	}
 
+
+	
 
 	
 

@@ -93,7 +93,7 @@ public:
 
 	void Mark()
 	{
-		bool mark = true;
+		mark = true;
 	}
 
 	void setRuhelage(SystemState XR);

@@ -16,6 +16,12 @@ NeuralNet::NeuralNet()
 	mat = K;
 }
 
+NeuralNet::NeuralNet(const MatrixXd & MAT)
+	:mat(MAT)
+{
+	
+}
+
 
 NeuralNet::~NeuralNet()
 {
@@ -43,9 +49,7 @@ MatrixXd NeuralNet::forward(const MatrixXd & input)
 NeuralNet NeuralNet::Breed(const NeuralNet & a, double wa, const NeuralNet & b, double wb)
 {
 
-	// single layer case;
-	wa = 1;
-	wb = 1;
+
 
 	MatrixXd aa = wa * a.mat;
 

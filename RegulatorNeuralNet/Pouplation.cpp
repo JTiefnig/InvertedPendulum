@@ -28,15 +28,25 @@ void Pouplation::timestep()
 
 void Pouplation::Render(sf::RenderTarget & target)
 {
+	double bestSuccess = INFINITY;
+	
+	Individual* best=nullptr;
+
 	for (auto&& i : peps)
 	{
-		if (maxSuccess*1.1 > i.getSuccess())
+		if (i.getSuccess() < bestSuccess)
 		{
-			i.Mark();
+			bestSuccess = i.getSuccess();
+			i.Render(target);
+			best = &i;
 		}
-		i.Render(target);
+		
 	}
 		
+	if (best != nullptr)
+		best->Mark();
+
+
 }
 
 void Pouplation::Breed()
@@ -47,13 +57,21 @@ void Pouplation::Breed()
 	// System Platzhirsch 
 	// Der Beste bekommt alle (leicht zu programmieren)
 
+
+	
+
 	for (auto&& i : peps)
 	{
-		if (i.getSuccess() < success)
+		double currentSuccess = i.getSuccess();
+		if (currentSuccess < success)
 		{
 			success = i.getSuccess();
 			Best = i;
 		}
+
+
+
+
 	}
 		
 	maxSuccess = success;
@@ -67,12 +85,6 @@ void Pouplation::Breed()
 		double wa = 1 / (i.getSuccess()<0.01? 0.01 : i.getSuccess() ) ;
 		double wb = 1 / success;
 
-		if (wa * 2 < wb)
-		{
-			std::cout << "rand new" << std::endl;
-			i = Individual();
-			wa = wb;
-		}
 
  		i = Individual::Breed(i, wa, Best, wb);
 	}

@@ -2,7 +2,7 @@
 #include <math.h>
 #include "SFML/Graphics.hpp"
 #include <iostream>
-
+#include "Utility.h"
 
 
 ControlSystem::ControlSystem()
@@ -135,6 +135,17 @@ void ControlSystem::render(sf::RenderTarget & target)
 
 	target.draw(cart);
 
+	// Draw TEXT
+	// 
+
+	//sf::Text text;
+
+	//text.setFont(CustomFont::Font());
+	//text.setString("Tief");
+	//text.setCharacterSize(24); 
+	//text.setFillColor(sf::Color::Black);
+	//text.setPosition(cartpx - 1.5*scale, cartpy);
+	//target.draw(text);
 
 	// wheels
 	sf::CircleShape wheel(0.5*scale);
@@ -148,7 +159,7 @@ void ControlSystem::render(sf::RenderTarget & target)
 
 
 	// Pendlulum
-
+	 
 
 	float ppx = cartpx + sin(x(2,0)) *L * scale;
 	float ppy = cartpy + cos(x(2, 0)) *L * scale;
@@ -157,10 +168,11 @@ void ControlSystem::render(sf::RenderTarget & target)
 	sf::CircleShape m(0.5*scale);
 	m.setPointCount(16);
 
-	if (mark)
+	if (mark == true)
 	{
+ 		
 		m.setFillColor(sf::Color::Red);
-		mark = false;
+   		mark = false;
 	}
 	else
 	{

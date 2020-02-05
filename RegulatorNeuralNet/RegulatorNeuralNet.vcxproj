@@ -135,6 +135,7 @@
     <ClCompile Include="MatrixXd.cpp" />
     <ClCompile Include="NeuralNet.cpp" />
     <ClCompile Include="Pouplation.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ControlSystem.h" />
@@ -143,6 +144,10 @@
     <ClInclude Include="MatrixXd.h" />
     <ClInclude Include="NeuralNet.h" />
     <ClInclude Include="Pouplation.h" />
+    <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

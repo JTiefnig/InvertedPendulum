@@ -12,6 +12,11 @@ Individual::Individual()
 	
 }
 
+Individual::Individual(const NeuralNet & Net)
+	:net(Net)
+{
+}
+
 
 Individual::~Individual()
 {

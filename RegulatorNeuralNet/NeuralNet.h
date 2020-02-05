@@ -10,6 +10,10 @@
 
 
 
+struct MyStruct
+{
+
+};
 
 
 class NeuralNet
@@ -21,6 +25,7 @@ class NeuralNet
 
 public:
 	NeuralNet();
+	NeuralNet(const MatrixXd& mat);
 	~NeuralNet();
 
 	static NeuralNet RandomNet(float range);
@@ -33,6 +38,7 @@ public:
 	// Breed
 
 	static NeuralNet Breed(const NeuralNet& a, double wa, const NeuralNet& b, double wb);
+
 
 	std::string toString() const
 	{
