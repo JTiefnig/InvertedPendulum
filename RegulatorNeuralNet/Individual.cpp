@@ -4,7 +4,7 @@
 
 Individual::Individual()
 {
-	net = NeuralNet::RandomNet(100);
+	net = NeuralNet::RandomNet(500);
 	success = 0;
 
 	
@@ -45,8 +45,8 @@ void Individual::CalculateSuccess()
 
 	Q(0, 0) = 1;
 	Q(1, 1) = 1;
-	Q(2, 2) = 100;
-	Q(3, 3) = 1000;
+	Q(2, 2) = 10;
+	Q(3, 3) = 100;
 
 	auto div = sys.x - sys.xR;
 

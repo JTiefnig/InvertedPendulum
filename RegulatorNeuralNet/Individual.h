@@ -35,6 +35,11 @@ public:
 		return net.toString();
 	}
 
+	void Mark()
+	{
+		sys.Mark();
+	}
+
 protected:
 
 

@@ -65,6 +65,8 @@ class ControlSystem
 
 	MatrixXd K;
 
+	bool mark;
+
 public:
 
 	SystemState xR;
@@ -87,6 +89,11 @@ public:
 	void setInput(double U)
 	{
 		this->u = U;
+	}
+
+	void Mark()
+	{
+		bool mark = true;
 	}
 
 	void setRuhelage(SystemState XR);

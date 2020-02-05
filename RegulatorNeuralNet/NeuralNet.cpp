@@ -44,6 +44,8 @@ NeuralNet NeuralNet::Breed(const NeuralNet & a, double wa, const NeuralNet & b, 
 {
 
 	// single layer case;
+	wa = 1;
+	wb = 1;
 
 	MatrixXd aa = wa * a.mat;
 
@@ -52,7 +54,7 @@ NeuralNet NeuralNet::Breed(const NeuralNet & a, double wa, const NeuralNet & b, 
 	NeuralNet ret;
 	ret.mat = (aa+bb) * (1/(wa+wb));
 
-	double variator = abs(ret.mat.sum())*0.1 + 1;
+	double variator = abs(ret.mat.sum())*0.01 + 1;
 
 	ret.mat += MatrixXd::Random(ret.mat.rows(), ret.mat.cols(), -variator, variator);
 

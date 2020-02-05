@@ -156,7 +156,18 @@ void ControlSystem::render(sf::RenderTarget & target)
 
 	sf::CircleShape m(0.5*scale);
 	m.setPointCount(16);
-	m.setFillColor(gray);
+
+	if (mark)
+	{
+		m.setFillColor(sf::Color::Red);
+		mark = false;
+	}
+	else
+	{
+		m.setFillColor(gray);
+	}
+	
+
 	m.setPosition(ppx-scale*0.5, ppy-scale*0.5);
 	target.draw(m);
 

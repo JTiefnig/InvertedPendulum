@@ -41,7 +41,7 @@ int main()
 	
 	
 	
-	Pouplation pop(40);
+	Pouplation pop(10);
 
 	// for L = 10
 	/*MatrixXd K(4, 1);
@@ -55,7 +55,7 @@ int main()
 	
 
 	bool done = false;
-	bool autotrain = true;
+	bool autotrain = false;
 
 	int counter = 0;
 
@@ -89,7 +89,8 @@ int main()
 					}
 					
 				}
-				if (event.key.code == sf::Keyboard::Down)
+
+				if (event.key.code == sf::Keyboard::Right)
 				{
 					autotrain != autotrain;
 				}
